@@ -1,0 +1,74 @@
+[
+    {
+        "reactants": [
+            "C",
+            "O2"
+        ],
+        "products": [
+            "CO2"
+        ],
+        "balanced": true,
+        "reactant_atoms": {
+            "C": 1,
+            "O": 2
+        },
+        "product_atoms": {
+            "C": 1,
+            "O": 2
+        }
+    },
+    {
+        "reactants": [
+            "H2",
+            "O2"
+        ],
+        "products": [
+            "H2O"
+        ],
+        "balanced": {
+            "reactants": [
+                "2H2",
+                "O2"
+            ],
+            "products": [
+                "2H2O"
+            ]
+        }
+    },
+    {
+        "reactants": [
+            "H2",
+            "O2"
+        ],
+        "products": [
+            "H2O"
+        ],
+        "balanced": {
+            "reactants": [
+                "2H2",
+                "O2"
+            ],
+            "products": [
+                "2H2O"
+            ]
+        }
+    },
+    {
+        "reactants": [
+            "H2",
+            "O2"
+        ],
+        "products": [
+            "H2O"
+        ],
+        "balanced": {
+            "reactants": [
+                "2H2",
+                "O2"
+            ],
+            "products": [
+                "2H2O"
+            ]
+        }
+    }
+]

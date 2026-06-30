@@ -1,0 +1,429 @@
+[
+    {
+        "id": 1,
+        "name": "Ammonium",
+        "common_name": "Ammonium",
+        "iupac_name": "Ammonium",
+        "aliases": [
+            "NH4"
+        ],
+        "formula": "NH4",
+        "formula_display": "NH₄⁺",
+        "atoms": {
+            "N": 1,
+            "H": 4
+        },
+        "charge": 1,
+        "ion_type": "cation",
+        "category": "polyatomic",
+        "molar_mass": 18.039,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 2,
+        "name": "Hydronium",
+        "common_name": "Hydronium",
+        "iupac_name": "Oxonium",
+        "aliases": [
+            "H3O"
+        ],
+        "formula": "H3O",
+        "formula_display": "H₃O⁺",
+        "atoms": {
+            "H": 3,
+            "O": 1
+        },
+        "charge": 1,
+        "ion_type": "cation",
+        "category": "polyatomic",
+        "molar_mass": 19.023,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 3,
+        "name": "Hydroxide",
+        "common_name": "Hydroxide",
+        "iupac_name": "Hydroxide",
+        "aliases": [
+            "OH"
+        ],
+        "formula": "OH",
+        "formula_display": "OH⁻",
+        "atoms": {
+            "O": 1,
+            "H": 1
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "hydroxide",
+        "molar_mass": 17.007,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 4,
+        "name": "Nitrate",
+        "common_name": "Nitrate",
+        "iupac_name": "Trioxonitrate(V)",
+        "aliases": [
+            "NO3"
+        ],
+        "formula": "NO3",
+        "formula_display": "NO₃⁻",
+        "atoms": {
+            "N": 1,
+            "O": 3
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 62.004,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 5,
+        "name": "Nitrite",
+        "common_name": "Nitrite",
+        "iupac_name": "Dioxonitrate(III)",
+        "aliases": [
+            "NO2"
+        ],
+        "formula": "NO2",
+        "formula_display": "NO₂⁻",
+        "atoms": {
+            "N": 1,
+            "O": 2
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 46.005,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 6,
+        "name": "Sulfate",
+        "common_name": "Sulfate",
+        "iupac_name": "Tetraoxosulfate(VI)",
+        "aliases": [
+            "Sulphate",
+            "SO4"
+        ],
+        "formula": "SO4",
+        "formula_display": "SO₄²⁻",
+        "atoms": {
+            "S": 1,
+            "O": 4
+        },
+        "charge": -2,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 96.06,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 7,
+        "name": "Sulfite",
+        "common_name": "Sulfite",
+        "iupac_name": "Trioxosulfate(IV)",
+        "aliases": [
+            "SO3"
+        ],
+        "formula": "SO3",
+        "formula_display": "SO₃²⁻",
+        "atoms": {
+            "S": 1,
+            "O": 3
+        },
+        "charge": -2,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 80.06,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 8,
+        "name": "Carbonate",
+        "common_name": "Carbonate",
+        "iupac_name": "Trioxocarbonate(IV)",
+        "aliases": [
+            "CO3"
+        ],
+        "formula": "CO3",
+        "formula_display": "CO₃²⁻",
+        "atoms": {
+            "C": 1,
+            "O": 3
+        },
+        "charge": -2,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 60.01,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 9,
+        "name": "Hydrogen Carbonate",
+        "common_name": "Bicarbonate",
+        "iupac_name": "Hydrogen carbonate",
+        "aliases": [
+            "HCO3",
+            "Bicarbonate"
+        ],
+        "formula": "HCO3",
+        "formula_display": "HCO₃⁻",
+        "atoms": {
+            "H": 1,
+            "C": 1,
+            "O": 3
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 61.017,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 10,
+        "name": "Phosphate",
+        "common_name": "Phosphate",
+        "iupac_name": "Tetraoxophosphate(V)",
+        "aliases": [
+            "PO4"
+        ],
+        "formula": "PO4",
+        "formula_display": "PO₄³⁻",
+        "atoms": {
+            "P": 1,
+            "O": 4
+        },
+        "charge": -3,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 94.97,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 11,
+        "name": "Cyanide",
+        "common_name": "Cyanide",
+        "iupac_name": "Cyanide",
+        "aliases": [
+            "CN"
+        ],
+        "formula": "CN",
+        "formula_display": "CN⁻",
+        "atoms": {
+            "C": 1,
+            "N": 1
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "pseudohalide",
+        "molar_mass": 26.018,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 12,
+        "name": "Acetate",
+        "common_name": "Acetate",
+        "iupac_name": "Ethanoate",
+        "aliases": [
+            "CH3COO",
+            "C2H3O2",
+            "Ethanoate"
+        ],
+        "formula": "C2H3O2",
+        "formula_display": "C₂H₃O₂⁻",
+        "atoms": {
+            "C": 2,
+            "H": 3,
+            "O": 2
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "carboxylate",
+        "molar_mass": 59.044,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 13,
+        "name": "Permanganate",
+        "common_name": "Permanganate",
+        "iupac_name": "Tetraoxomanganate(VII)",
+        "aliases": [
+            "MnO4"
+        ],
+        "formula": "MnO4",
+        "formula_display": "MnO₄⁻",
+        "atoms": {
+            "Mn": 1,
+            "O": 4
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 118.934,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 14,
+        "name": "Chromate",
+        "common_name": "Chromate",
+        "iupac_name": "Tetraoxochromate(VI)",
+        "aliases": [
+            "CrO4"
+        ],
+        "formula": "CrO4",
+        "formula_display": "CrO₄²⁻",
+        "atoms": {
+            "Cr": 1,
+            "O": 4
+        },
+        "charge": -2,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 115.99,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 15,
+        "name": "Dichromate",
+        "common_name": "Dichromate",
+        "iupac_name": "Heptaoxodichromate(VI)",
+        "aliases": [
+            "Cr2O7"
+        ],
+        "formula": "Cr2O7",
+        "formula_display": "Cr₂O₇²⁻",
+        "atoms": {
+            "Cr": 2,
+            "O": 7
+        },
+        "charge": -2,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 215.99,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 16,
+        "name": "Hypochlorite",
+        "common_name": "Hypochlorite",
+        "iupac_name": "Oxochlorate(I)",
+        "aliases": [
+            "ClO"
+        ],
+        "formula": "ClO",
+        "formula_display": "ClO⁻",
+        "atoms": {
+            "Cl": 1,
+            "O": 1
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 51.452,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 17,
+        "name": "Chlorite",
+        "common_name": "Chlorite",
+        "iupac_name": "Dioxochlorate(III)",
+        "aliases": [
+            "ClO2"
+        ],
+        "formula": "ClO2",
+        "formula_display": "ClO₂⁻",
+        "atoms": {
+            "Cl": 1,
+            "O": 2
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 67.451,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 18,
+        "name": "Chlorate",
+        "common_name": "Chlorate",
+        "iupac_name": "Trioxochlorate(V)",
+        "aliases": [
+            "ClO3"
+        ],
+        "formula": "ClO3",
+        "formula_display": "ClO₃⁻",
+        "atoms": {
+            "Cl": 1,
+            "O": 3
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 83.451,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 19,
+        "name": "Perchlorate",
+        "common_name": "Perchlorate",
+        "iupac_name": "Tetraoxochlorate(VII)",
+        "aliases": [
+            "ClO4"
+        ],
+        "formula": "ClO4",
+        "formula_display": "ClO₄⁻",
+        "atoms": {
+            "Cl": 1,
+            "O": 4
+        },
+        "charge": -1,
+        "ion_type": "anion",
+        "category": "oxoanion",
+        "molar_mass": 99.45,
+        "is_common": true,
+        "search_priority": 1
+    },
+    {
+        "id": 20,
+        "name": "Oxalate",
+        "common_name": "Oxalate",
+        "iupac_name": "Ethanedioate",
+        "aliases": [
+            "C2O4",
+            "Ethanedioate"
+        ],
+        "formula": "C2O4",
+        "formula_display": "C₂O₄²⁻",
+        "atoms": {
+            "C": 2,
+            "O": 4
+        },
+        "charge": -2,
+        "ion_type": "anion",
+        "category": "carboxylate",
+        "molar_mass": 88.018,
+        "is_common": true,
+        "search_priority": 1
+    }
+]
