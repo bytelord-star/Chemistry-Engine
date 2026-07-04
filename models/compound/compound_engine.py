@@ -19,6 +19,7 @@ from models.compound.compound_classification import classify_compound
 from models.compound.bonding import calculate_bond_type
 from models.compound.molecular_polarity import predict_polarity
 
+from models.core.base_manager import find_base
 from models.core.acid_manager import find_acid
 from models.core.database_manager import (
     find_compound,
@@ -110,6 +111,11 @@ def create_compound(formula):
     if classification["type"] == "Acid":
         acid_data = find_acid(parsed["formula"])
 
+    base_data = None
+
+    if classification["type"] == "Base":
+        base_data = find_base(parsed["formula"])
+
     # -----------------------
     # Compound Object
     # -----------------------
@@ -121,7 +127,8 @@ def create_compound(formula):
         bond,
         polarity,
         classification,
-        acid_data
+        acid_data,
+        base_data
 
     )
 

@@ -10,7 +10,9 @@ def build_compound(
 
         classification,
 
-        acid_data=None
+        acid_data=None,
+
+        base_data=None
 
 ):
 
@@ -46,6 +48,8 @@ def build_compound(
 
         "classification": classification,
 
-        "acid_data": acid_data
+        "acid_data": acid_data,
+
+        "base_data": base_data
 
     }

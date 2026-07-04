@@ -92,6 +92,16 @@ def find_compound(formula):
 
 def add_compound(compound):
 
+    compounds = load_compounds()
+
+    for c in compounds:
+        
+        if c["formula"].lower() == compound["formula"].lower():
+
+            return False
+    compounds.append(compound)
+
+    save_compounds(compounds)
 
     return True
 
