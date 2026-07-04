@@ -1,44 +1,72 @@
-# Chemistry Engine
+# 🧪 Chemistry Engine
 
-A modular chemistry engine written in Python.
+A modular chemistry engine written in Python for analyzing chemical compounds.
+
+The project is designed to become a complete chemistry toolkit capable of:
+
+- Formula parsing
+- Compound classification
+- Molecular mass calculation
+- Bond prediction
+- Polarity prediction
+- Acid/Base recognition
+- Reaction prediction
+- Thermodynamics
+- Organic chemistry
+- AI-assisted chemical analysis
+
+---
 
 ## Current Features
 
-- Formula parser
-- Formula validator
-- Element validator
-- Molecular mass calculation
-- Bond type prediction
-- Molecular polarity prediction
-- Compound classification
-- Acid database
-- Compound database
+✅ Formula parser
+
+✅ Molecular mass calculation
+
+✅ Bond type prediction
+
+✅ Molecular polarity prediction
+
+✅ Compound classification
+
+✅ Acid database
+
+✅ Base database
+
+✅ Compound database
+
+---
 
 ## Project Structure
 
-```
+
 DATA/
 models/
-scripts/
+    parser/
+    compound/
+    reaction/
+    core/
 tools/
-```
+main.py
+config.py
 
-## Example
 
-``` python
-from models.compound.compound_engine import create_compound
+---
 
-compound = create_compound("H2O")
+## Future Roadmap
 
-print(compound)
-```
-
-## Future
-
-- Base database
 - Salt database
-- Organic compounds
-- Reaction engine
-- Balancing equations
+- Oxide database
+- Organic compound database
 - Solubility prediction
-- AI assistant
+- Oxidation state engine
+- Balancing chemical equations
+- Thermodynamics
+- Electrochemistry
+- AI module
+
+---
+
+## Author
+
+Mohamad
