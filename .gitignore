@@ -1,22 +1,24 @@
 # Python cache
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 
-# Virtual environments
+# Virtual Environment
 .venv/
 venv/
 env/
 
-# IDEs
+# IDE
 .vscode/
 .idea/
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
 
+# Runtime Database
+DATA/compounds.json
+
 # Logs
 *.log
-
-# Python environment
-.python-version
