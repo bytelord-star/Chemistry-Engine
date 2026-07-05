@@ -1,3 +1,7 @@
+![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Version](https://img.shields.io/badge/Version-v0.1.0-orange)
 # 🧪 Chemistry Engine
 
 A modular, scalable, and extensible chemistry engine written in Python.
