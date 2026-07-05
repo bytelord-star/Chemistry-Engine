@@ -1,13 +1,12 @@
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
 
 # Virtual Environment
-.venv/
 venv/
-env/
+.env/
 
 # IDE
 .vscode/
@@ -17,8 +16,17 @@ env/
 .DS_Store
 Thumbs.db
 
-# Runtime Database
-DATA/compounds.json
-
 # Logs
 *.log
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Cache
+.pytest_cache/
+.mypy_cache/
+
+# Local databases (optional)
+# DATA/compounds.json
