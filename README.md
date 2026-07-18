@@ -1,44 +1,290 @@
-# Chemistry Engine
+![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![License](https://img.shields.io/badge/License-MIT-green.svg)
+![Version](https://img.shields.io/badge/Version-v0.1.0-orange)
+# 🧪 Chemistry Engine
 
-A modular chemistry engine written in Python.
+> A modular, scalable, and extensible chemistry engine written in Python.
 
-## Current Features
+Chemistry Engine is an open-source project designed to analyze, classify, name, and process chemical compounds using a clean, modular architecture.
 
-- Formula parser
-- Formula validator
-- Element validator
+The long-term vision is to build a complete chemistry framework capable of supporting chemical calculations, reaction prediction, molecular analysis, and AI-assisted chemistry applications.
+
+---
+
+## 🚀 Current Features
+
+### Core Engine
+- ✅ Chemical formula parser
+- ✅ Formula validation
+- ✅ Element validation
+- ✅ Polyatomic ion detection
+- ✅ JSON-based chemical databases
+- ✅ Modular project architecture
+
+### Chemical Analysis
+- ✅ Molecular mass calculation
+- ✅ Bond type prediction
+- ✅ Molecular polarity prediction
+- ✅ Compound classification
+- ✅ Oxidation number engine (basic)
+
+### IUPAC Naming
+- ✅ Molecular compound naming
+- ✅ Binary salt naming
+- ✅ Polyatomic salt naming
+- ✅ Metal oxide naming
+- ✅ Nonmetal oxide naming
+- ✅ Acid naming
+- ✅ Base naming
+- ✅ Common name support
+- ✅ Transition metal Roman numeral naming (Fe(II), Cu(I), ...)
+
+### Databases
+- ✅ Elements database
+- ✅ Polyatomic ions database
+- ✅ Acid database
+- ✅ Base database
+- ✅ Common names database
+- ✅ Compound database
+
+---
+
+# 📂 Project Structure
+
+```
+Chemistry-Engine
+│
+├── DATA/
+│   ├── acid.json
+│   ├── bases.json
+│   ├── common_names.json
+│   ├── compounds.json
+│   ├── elements.json
+│   ├── periodic_groups.json
+│   ├── polyatomic_ions.json
+│   ├── reactions.json
+│   └── valence_data.json
+│
+├── models/
+│   ├── compound/
+│   ├── core/
+│   ├── naming/
+│   ├── parser/
+│   ├── reaction/
+│   └── validation/
+│
+├── tools/
+│
+├── config.py
+├── main.py
+└── README.md
+```
+
+---
+
+# ⚙️ Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/bytelord-star/Chemistry-Engine.git
+```
+
+Move into the project
+
+```bash
+cd Chemistry-Engine
+```
+
+Run
+
+```bash
+python main.py
+```
+
+---
+
+# 💡 Example
+
+### Input
+
+```
+Fe2O3
+```
+
+### Output
+
+```
+Formula:
+Fe2O3
+
+Name:
+Rust
+
+IUPAC Name:
+Iron(III) Oxide
+
+Bond Type:
+Ionic
+
+Classification:
+Metal Oxide
+```
+
+---
+
+# 🏗 Architecture
+
+```
+                User Input
+                     │
+                     ▼
+            Formula Parser
+                     │
+                     ▼
+          Compound Engine
+                     │
+        ┌────────────┼────────────┐
+        ▼            ▼            ▼
+ Classification   Naming Engine  Analysis Engine
+        │            │            │
+        └────────────┼────────────┘
+                     ▼
+             Database Managers
+                     │
+                     ▼
+              JSON Databases
+```
+
+This modular design allows every subsystem to evolve independently while keeping the project maintainable and scalable.
+
+---
+
+# 🗺 Development Roadmap
+
+## ✅ Version 0.2 (Current)
+
+### Core Engine
+- Formula parsing
+- Formula validation
+- Compound classification
+- JSON database system
+
+### Chemical Analysis
 - Molecular mass calculation
 - Bond type prediction
 - Molecular polarity prediction
-- Compound classification
-- Acid database
+- Oxidation number engine (basic)
+
+### IUPAC Naming
+- Acid naming
+- Base naming
+- Molecular compound naming
+- Binary salt naming
+- Polyatomic salt naming
+- Metal oxide naming
+- Nonmetal oxide naming
+- Common name integration
+
+### Databases
+- Elements database
+- Acids database
+- Bases database
+- Polyatomic ions database
+- Common names database
 - Compound database
 
-## Project Structure
+---
 
-```
-DATA/
-models/
-scripts/
-tools/
-```
+## 🔜 Version 0.3
 
-## Example
+- Organic compound database
+- Solubility database
+- Advanced oxidation number engine
+- Hydrates
+- Acid salts
+- Basic salts
+- Double salts
+- Mixed salts
+- Better transition-metal support
+- Database optimization
 
-``` python
-from models.compound.compound_engine import create_compound
+---
 
-compound = create_compound("H2O")
+## 🔬 Version 0.4
 
-print(compound)
-```
-
-## Future
-
-- Base database
-- Salt database
-- Organic compounds
-- Reaction engine
-- Balancing equations
+- Chemical reaction engine
+- Equation balancing
 - Solubility prediction
-- AI assistant
+- Precipitation prediction
+- Thermodynamic calculations
+
+---
+
+## 🧬 Version 0.5
+
+- Organic chemistry engine
+- Functional group recognition
+- Organic nomenclature
+- Isomer detection
+- Reaction mechanism support
+
+---
+
+## 🚀 Version 1.0
+
+- AI Chemistry Assistant
+- Molecular property prediction
+- Plugin system
+- Public Python API
+- Complete chemistry framework
+- Scientific calculation toolkit
+---
+
+# 🎯 Long-Term Vision
+
+The goal of Chemistry Engine is to become a complete open-source chemistry framework for Python that can be used in
+
+- Chemistry education
+- Scientific research
+- AI chemistry projects
+- Molecular analysis
+- Chemical simulations
+- Automation tools
+- Educational software
+
+---
+
+# 🤝 Contributing
+
+Contributions are welcome.
+
+If you would like to improve the project
+
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+Bug reports, feature requests, ideas, and improvements are always appreciated.
+
+---
+
+# 📜 License
+
+This project is licensed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Mohamad**
+
+GitHub
+
+https://github.com/bytelord-star
+
+---
+
+⭐ **If you find this project useful, consider giving it a Star on GitHub.**
