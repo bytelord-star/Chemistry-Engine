@@ -163,39 +163,58 @@ This modular design allows every subsystem to evolve independently while keeping
 
 # 🗺 Development Roadmap
 
-## ✅ Version 0.1 (Current)
+## ✅ Version 0.2 (Current)
 
+### Core Engine
 - Formula parsing
 - Formula validation
 - Compound classification
+- JSON database system
+
+### Chemical Analysis
 - Molecular mass calculation
-- Bond prediction
+- Bond type prediction
 - Molecular polarity prediction
+- Oxidation number engine (basic)
+
+### IUPAC Naming
 - Acid naming
 - Base naming
-- Molecular naming
-- Salt naming
+- Molecular compound naming
+- Binary salt naming
+- Polyatomic salt naming
 - Metal oxide naming
 - Nonmetal oxide naming
-- Oxidation number engine
-- Common names
-- JSON databases
+- Common name integration
+
+### Databases
+- Elements database
+- Acids database
+- Bases database
+- Polyatomic ions database
+- Common names database
+- Compound database
 
 ---
 
-## 🔜 Version 0.2
+## 🔜 Version 0.3
 
 - Organic compound database
 - Solubility database
-- Advanced oxidation state engine
-- Full transition-metal naming
+- Advanced oxidation number engine
+- Hydrates
+- Acid salts
+- Basic salts
+- Double salts
+- Mixed salts
+- Better transition-metal support
 - Database optimization
 
 ---
 
-## 🔬 Version 0.3
+## 🔬 Version 0.4
 
-- Chemical reaction prediction
+- Chemical reaction engine
 - Equation balancing
 - Solubility prediction
 - Precipitation prediction
@@ -203,24 +222,24 @@ This modular design allows every subsystem to evolve independently while keeping
 
 ---
 
-## 🧬 Version 0.4
+## 🧬 Version 0.5
 
 - Organic chemistry engine
 - Functional group recognition
 - Organic nomenclature
 - Isomer detection
+- Reaction mechanism support
 
 ---
 
 ## 🚀 Version 1.0
 
 - AI Chemistry Assistant
-- Advanced reaction engine
 - Molecular property prediction
 - Plugin system
 - Public Python API
 - Complete chemistry framework
-
+- Scientific calculation toolkit
 ---
 
 # 🎯 Long-Term Vision
