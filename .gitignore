@@ -1,22 +1,32 @@
-# Python cache
+# Python
 __pycache__/
 *.py[cod]
+*.pyo
+*.pyd
 
-# Virtual environments
-.venv/
+# Virtual Environment
 venv/
-env/
+.env/
 
-# IDEs
+# IDE
 .vscode/
 .idea/
 
-# OS files
+# OS
 .DS_Store
 Thumbs.db
 
 # Logs
 *.log
 
-# Python environment
-.python-version
+# Build
+build/
+dist/
+*.egg-info/
+
+# Cache
+.pytest_cache/
+.mypy_cache/
+
+# Local databases (optional)
+# DATA/compounds.json

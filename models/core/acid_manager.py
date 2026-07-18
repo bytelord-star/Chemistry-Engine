@@ -1,92 +1,71 @@
-import json
-from pathlib import Path
-
 from config import ACIDS_PATH
 
+from models.core.database_loader import JsonDatabase
 
-def load_acids():
-    """
-    Load all acids from database.
-    """
 
-    with open(
-        ACIDS_PATH,
-        "r",
-        encoding="utf-8"
-    ) as file:
+# ==========================================================
+# Database
+# ==========================================================
 
-        return json.load(file)
-    
-def find_acid(formula):
+acid_db = JsonDatabase(
+    ACIDS_PATH
+)
 
-    acids = load_acids()
 
-    for acid in acids:
+# ==========================================================
+# Find by Formula
+# ==========================================================
 
-        if acid["formula"] == formula:
+def find_acid(
+    formula: str,
+):
 
-            return acid
+    return acid_db.find_by_formula(
+        formula
+    )
 
-    return None
 
-def find_acid_by_name(name):
+# ==========================================================
+# Find by Name
+# ==========================================================
 
-    acids = load_acids()
+def find_acid_by_name(
+    name: str,
+):
 
-    name = name.lower()
+    return acid_db.find_by_name(
+        name
+    )
 
-    for acid in acids:
 
-        if acid["name"].lower() == name:
-            return acid
-
-        if acid["iupac_name"].lower() == name:
-            return acid
-
-        if acid["common_name"].lower() == name:
-            return acid
-
-    return None
-
+# ==========================================================
+# Strong Acids
+# ==========================================================
 
 def get_strong_acids():
 
-    acids = load_acids()
+    return acid_db.filter(
+        "strength",
+        "Strong"
+    )
 
-    return [
 
-        acid
-
-        for acid in acids
-
-        if acid["strength"] == "Strong"
-
-    ]
+# ==========================================================
+# Organic Acids
+# ==========================================================
 
 def get_organic_acids():
 
-    acids = load_acids()
+    return acid_db.filter(
+        "is_organic",
+        True
+    )
 
-    return [
 
-        acid
+# ==========================================================
+# Reload
+# ==========================================================
 
-        for acid in acids
+def reload_acids():
 
-        if acid["is_organic"]
-
-    ]
-
-if __name__ == "__main__":
-
-    print(find_acid("H2SO4"))
-
-    print()
-
-    print(find_acid_by_name("Acetic Acid"))
-
-    print()
-
-    print(len(get_strong_acids()))
-
-    print(len(get_organic_acids()))
+    acid_db.reload()

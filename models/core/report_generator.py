@@ -57,39 +57,38 @@ Oxidation States:
 
 def compound_report(compound):
 
-
     return f"""
-
 ========== COMPOUND INFORMATION ==========
 
-
 Formula:
-{compound.get('formula')}
+{compound.get("formula")}
 
+Name:
+{compound.get("name")}
+
+IUPAC Name:
+{compound.get("iupac_name")}
+
+Common Name:
+{compound.get("common_name")}
 
 Elements:
-{compound.get('elements')}
-
+{compound.get("elements")}
 
 Total Atoms:
-{compound.get('total_atoms')}
-
+{compound.get("total_atoms")}
 
 Molar Mass:
-{compound.get('molar_mass')} g/mol
-
+{compound.get("molar_mass")} g/mol
 
 Bond Type:
-{compound.get('bond_type')}
-
+{compound.get("bond_type")}
 
 Molecular Polarity:
-{compound.get('molecular_polarity')}
-
+{compound.get("molecular_polarity")}
 
 Classification:
-{compound.get('classification')}
-
+{compound.get("classification")}
 """
 
 

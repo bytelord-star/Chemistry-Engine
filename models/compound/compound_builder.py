@@ -1,28 +1,23 @@
 def build_compound(
-
-        parsed,
-
-        molar_mass,
-
-        bond_type,
-
-        molecular_polarity,
-
-        classification,
-
-        acid_data=None,
-
-        base_data=None
-
+    parsed,
+    name_data,
+    molar_mass,
+    bond_type,
+    molecular_polarity,
+    classification,
+    acid_data=None,
+    base_data=None
 ):
 
     return {
 
-        # ==========================
-        # Formula Information
-        # ==========================
-
         "formula": parsed["formula"],
+
+        "name": name_data["name"],
+
+        "iupac_name": name_data["iupac_name"],
+
+        "common_name": name_data["common_name"],
 
         "elements": parsed["atoms"],
 
@@ -32,15 +27,7 @@ def build_compound(
 
         "total_atoms": parsed["total_atoms"],
 
-        # ==========================
-        # Physical Properties
-        # ==========================
-
         "molar_mass": molar_mass,
-
-        # ==========================
-        # Chemical Properties
-        # ==========================
 
         "bond_type": bond_type,
 

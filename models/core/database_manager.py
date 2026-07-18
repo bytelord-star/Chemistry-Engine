@@ -1,258 +1,197 @@
-import json
-from pathlib import Path
+from config import COMPOUNDS_PATH
 
-from config import ELEMENTS_PATH
-
+from models.core.database_loader import JsonDatabase
 
 
-# ========= Database Path =========
+# ==========================================================
+# Database
+# ==========================================================
 
-COMPOUNDS_PATH = (
-    ELEMENTS_PATH.parent / "compounds.json"
+compound_db = JsonDatabase(
+    COMPOUNDS_PATH
 )
 
-print("ELEMENTS_PATH :", ELEMENTS_PATH)
-print("COMPOUNDS_PATH:", COMPOUNDS_PATH)
 
-
-# ========= Load =========
+# ==========================================================
+# Load
+# ==========================================================
 
 def load_compounds():
 
-    if not COMPOUNDS_PATH.exists():
-
-        return []
+    return compound_db.all()
 
 
-    with open(
-        COMPOUNDS_PATH,
-        "r",
-        encoding="utf-8"
-    ) as file:
-
-
-        content = file.read().strip()
-
-
-        if not content:
-
-            return []
-
-
-        return json.loads(content)
-
-
-
-# ========= Save =========
+# ==========================================================
+# Save
+# ==========================================================
 
 def save_compounds(compounds):
 
-    print("Saving to:", COMPOUNDS_PATH)
+    compound_db.data = compounds
 
-    with open(
-        COMPOUNDS_PATH,
-        "w",
-        encoding="utf-8"
-    ) as file:
-
-        json.dump(
-            compounds,
-            file,
-            indent=4,
-            ensure_ascii=False
-        )
-
-    print("Number of compounds:", len(compounds))
+    compound_db.save()
 
 
+# ==========================================================
+# Exists
+# ==========================================================
 
-# ========= Find =========
-
-def find_compound(formula):
-
-
-    compounds = load_compounds()
-
-
-
-    for compound in compounds:
-
-
-        if compound["formula"].lower() == formula.lower():
-
-            return compound
-
-
-
-    return None
-
-
-
-# ========= Add =========
-
-def add_compound(compound):
-
-    compounds = load_compounds()
-
-    for c in compounds:
-        
-        if c["formula"].lower() == compound["formula"].lower():
-
-            return False
-    compounds.append(compound)
-
-    save_compounds(compounds)
-
-    return True
-
-
-
-# ========= Update =========
-
-def update_compound(
-        formula,
-        new_data
+def compound_exists(
+    formula: str,
 ):
 
-
-    compounds = load_compounds()
-
-
-
-    for compound in compounds:
-
-
-        if compound["formula"].lower() == formula.lower():
-
-
-            compound.update(
-                new_data
-            )
-
-
-            save_compounds(
-                compounds
-            )
-
-
-            return True
-
-
-
-    return False
-
-
-
-# ========= Delete =========
-
-def delete_compound(formula):
-
-
-    compounds = load_compounds()
-
-
-
-    new_list = [
-
-        c for c in compounds
-
-        if c["formula"].lower()
-        != formula.lower()
-
-    ]
-
-
-
-    if len(new_list) == len(compounds):
-
-        return False
-
-
-
-    save_compounds(
-        new_list
+    return compound_db.exists(
+        formula
     )
 
 
+# ==========================================================
+# Find
+# ==========================================================
+
+def find_compound(
+    formula: str,
+):
+
+    return compound_db.find_by_formula(
+        formula
+    )
+
+
+# ==========================================================
+# Add
+# ==========================================================
+
+def add_compound(
+    compound: dict,
+):
+
+    if compound_db.exists(
+
+        compound["formula"]
+
+    ):
+
+        return False
+
+    compound_db.append(
+        compound
+    )
+
     return True
 
 
+# ==========================================================
+# Update
+# ==========================================================
 
-# ========= Test =========
+def update_compound(
+    formula: str,
+    new_data: dict,
+):
+
+    return compound_db.update(
+
+        formula,
+
+        new_data,
+
+    )
+
+
+# ==========================================================
+# Delete
+# ==========================================================
+
+def delete_compound(
+    formula: str,
+):
+
+    return compound_db.delete(
+        formula
+    )
+
+
+# ==========================================================
+# Reload
+# ==========================================================
+
+def reload_compounds():
+
+    compound_db.reload()
+
+
+# ==========================================================
+# Count
+# ==========================================================
+
+def compound_count():
+
+    return len(
+        compound_db
+    )
+
+
+# ==========================================================
+# Test
+# ==========================================================
 
 if __name__ == "__main__":
 
-
     while True:
 
+        print("\n===== DATABASE MANAGER =====")
 
-        print(
-            "\n===== DATABASE MANAGER ====="
-        )
+        print("1. Find Compound")
 
+        print("2. Delete Compound")
 
-        print(
-            "1. Find compound"
-        )
+        print("3. Count")
 
-
-        print(
-            "2. Delete compound"
-        )
-
-
-        print(
-            "3. Exit"
-        )
-
+        print("4. Exit")
 
         choice = input(
             "Choose: "
-        )
-
-
+        ).strip()
 
         if choice == "1":
 
-
             formula = input(
                 "Formula: "
-            )
-
-
-            result = find_compound(
-                formula
-            )
-
+            ).strip()
 
             print(
-                result
+                find_compound(
+                    formula
+                )
             )
-
-
 
         elif choice == "2":
 
-
             formula = input(
                 "Formula: "
+            ).strip()
+
+            print(
+
+                "Deleted."
+
+                if delete_compound(
+                    formula
+                )
+
+                else
+
+                "Compound not found."
+
             )
 
-
-            if delete_compound(formula):
-
-                print(
-                    "Deleted"
-                )
-
-            else:
-
-                print(
-                    "Not found"
-                )
-
-
-
         elif choice == "3":
+
+            print(
+                compound_count()
+            )
+
+        elif choice == "4":
 
             break

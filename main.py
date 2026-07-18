@@ -1,44 +1,55 @@
-
-
-
 from models.core.chemistry_core import analyze
-
 from models.core.report_generator import (
     element_report,
     compound_report,
-    reaction_report
+    reaction_report,
 )
 
 
-
-
+# ==========================================================
+# Show Result
+# ==========================================================
 
 def show_result(result):
 
-    if not result["success"]:
-        print(result["message"])
+    if not result.get("success", False):
+        print(result.get("message", "Unknown error"))
         return
 
-    if result["type"] == "element":
-        print(element_report(result["data"]))
+    report_functions = {
+        "element": element_report,
+        "compound": compound_report,
+        "reaction": reaction_report,
+    }
 
-    elif result["type"] == "compound":
-        print(compound_report(result["data"]))
+    report = report_functions.get(result["type"])
 
-    elif result["type"] == "reaction":
-        print(reaction_report(result["data"]))
+    if report:
+        print(report(result["data"]))
+    else:
+        print("Unknown result type.")
 
+
+# ==========================================================
+# Main
+# ==========================================================
 
 def main():
 
-    print("========== Chemistry Engine ==========")
+    print("=" * 45)
+    print("        Chemistry Engine")
+    print("=" * 45)
 
     while True:
 
-        query = input("\nSearch (exit): ")
+        query = input("\nSearch (exit): ").strip()
 
         if query.lower() == "exit":
+            print("\nGoodbye!")
             break
+
+        if not query:
+            continue
 
         result = analyze(query)
 

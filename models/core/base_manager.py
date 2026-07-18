@@ -1,80 +1,71 @@
-import json
-
 from config import BASES_PATH
 
-
-def load_bases():
-    """
-    Load all bases from database.
-    """
-
-    with open(
-        BASES_PATH,
-        "r",
-        encoding="utf-8"
-    ) as file:
-
-        return json.load(file)
+from models.core.database_loader import JsonDatabase
 
 
-def find_base(formula):
+# ==========================================================
+# Database
+# ==========================================================
 
-    bases = load_bases()
-
-    for base in bases:
-
-        if base["formula"] == formula:
-
-            return base
-
-    return None
+base_db = JsonDatabase(
+    BASES_PATH
+)
 
 
-def find_base_by_name(name):
+# ==========================================================
+# Find by Formula
+# ==========================================================
 
-    bases = load_bases()
+def find_base(
+    formula: str,
+):
 
-    name = name.lower()
+    return base_db.find_by_formula(
+        formula
+    )
 
-    for base in bases:
 
-        if base["name"].lower() == name:
-            return base
+# ==========================================================
+# Find by Name
+# ==========================================================
 
-        if base["iupac_name"].lower() == name:
-            return base
+def find_base_by_name(
+    name: str,
+):
 
-        if base["common_name"].lower() == name:
-            return base
+    return base_db.find_by_name(
+        name
+    )
 
-    return None
 
+# ==========================================================
+# Strong Bases
+# ==========================================================
 
 def get_strong_bases():
 
-    bases = load_bases()
+    return base_db.filter(
+        "strength",
+        "Strong"
+    )
 
-    return [
 
-        base
-
-        for base in bases
-
-        if base["strength"] == "Strong"
-
-    ]
-
+# ==========================================================
+# Alkalis
+# ==========================================================
 
 def get_alkalis():
 
-    bases = load_bases()
+    return base_db.filter(
+        "is_alkali",
+        True
+    )
 
-    return [
 
-        base
+# ==========================================================
+# Reload
+# ==========================================================
 
-        for base in bases
+def reload_bases():
 
-        if base["is_alkali"]
-
-    ]
+    base_db.reload()

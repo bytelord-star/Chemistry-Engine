@@ -1,22 +1,47 @@
 import re
 
 
-def tokenize(formula: str):
+# ==========================================================
+# Patterns
+# ==========================================================
 
+TOKEN_PATTERN = re.compile(
+    r"[A-Z][a-z]?|\d+|\(|\)"
+)
+
+
+# ==========================================================
+# Tokenizer
+# ==========================================================
+
+def tokenize(
+    formula: str,
+) -> list[str]:
     """
     Convert a chemical formula into tokens.
 
-    Example:
-        Fe2(SO4)3
+    Example
+    -------
+    Fe2(SO4)3
 
-    Returns:
-        ['Fe','2','(','S','O','4',')','3']
+    Returns
+    -------
+    list[str]
+
+    ['Fe', '2', '(', 'S', 'O', '4', ')', '3']
     """
 
-    return re.findall(
+    return TOKEN_PATTERN.findall(formula)
 
-        r"[A-Z][a-z]?|\d+|\(|\)",
 
-        formula
+# ==========================================================
+# Test
+# ==========================================================
 
-    )
+if __name__ == "__main__":
+
+    print(tokenize("Fe2(SO4)3"))
+
+    print(tokenize("Ca(OH)2"))
+
+    print(tokenize("NaCl"))

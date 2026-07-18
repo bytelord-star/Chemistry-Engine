@@ -1,184 +1,161 @@
-# models/reaction_validator.py
-
+from models.parser.element_validator import validate_elements
 from models.parser.formula_validator import is_valid_formula
 
-from models.parser.element_validator import validate_elements
+
+# ==========================================================
+# Constants
+# ==========================================================
+
+REACTION_SEPARATORS = (
+    "=",
+    "->",
+)
 
 
+# ==========================================================
+# Detect Reaction
+# ==========================================================
 
-# =========================
-# Check Reaction Format
-# =========================
-
-def is_reaction(text):
-
+def is_reaction(text: str) -> bool:
+    """
+    Check whether the input looks
+    like a chemical reaction.
+    """
 
     text = text.strip()
 
-
-    # باید = یا -> داشته باشد
-
-    if "=" in text:
-
-        return True
+    return any(
+        separator in text
+        for separator in REACTION_SEPARATORS
+    )
 
 
-    if "->" in text:
-
-        return True
-
-
-    return False
-
-
-
-
-
-# =========================
+# ==========================================================
 # Split Reaction
-# =========================
+# ==========================================================
 
-def split_reaction(reaction):
+def split_reaction(reaction: str):
+    """
+    Split reaction into reactants
+    and products.
+    """
 
+    for separator in REACTION_SEPARATORS:
 
-    if "=" in reaction:
+        if separator in reaction:
 
+            left, right = reaction.split(
+                separator,
+                1
+            )
 
-        left, right = reaction.split(
-            "=",
-            1
-        )
+            reactants = [
 
+                item.strip()
 
-    elif "->" in reaction:
+                for item in left.split("+")
 
+                if item.strip()
 
-        left, right = reaction.split(
-            "->",
-            1
-        )
+            ]
 
+            products = [
 
-    else:
+                item.strip()
 
+                for item in right.split("+")
 
-        return None, None
+                if item.strip()
 
+            ]
 
+            return reactants, products
 
-    reactants = [
-
-        x.strip()
-
-        for x in left.split("+")
-    ]
-
-
-
-    products = [
-
-        x.strip()
-
-        for x in right.split("+")
-    ]
+    return None, None
 
 
+# ==========================================================
+# Validate Reaction
+# ==========================================================
 
-    return reactants, products
-
-
-
-
-
-# =========================
-# Validate Formulas
-# =========================
-
-def validate_reaction(reaction):
-
+def validate_reaction(reaction: str):
+    """
+    Validate reaction syntax.
+    """
 
     if not is_reaction(reaction):
 
-        return False
+        return False, None, None
 
-
-
-    reactants, products = split_reaction(
-        reaction
-    )
-
-
+    reactants, products = split_reaction(reaction)
 
     if not reactants or not products:
 
-        return False
+        return False, None, None
 
-
-
-    all_compounds = (
-        reactants + products
-    )
-
-
-
-    for formula in all_compounds:
-
-
+    for formula in reactants + products:
 
         if not is_valid_formula(formula):
 
-            return False
-
-
+            return False, None, None
 
         if not validate_elements(formula):
 
-            return False
+            return False, None, None
+
+    return True, reactants, products
 
 
+# ==========================================================
+# Analyze Reaction
+# ==========================================================
 
-    return True
+def analyze_reaction_input(reaction: str):
+    """
+    Validate and parse reaction.
+    """
 
+    valid, reactants, products = validate_reaction(
+        reaction
+    )
 
-
-
-
-# =========================
-# Full Analysis
-# =========================
-
-def analyze_reaction_input(reaction):
-
-
-    if not validate_reaction(reaction):
+    if not valid:
 
         return {
 
             "valid": False,
 
-            "message":
-            "Invalid reaction"
+            "message": "Invalid reaction"
 
         }
 
-
-
-    reactants, products = split_reaction(
-        reaction
-    )
-
-
-
     return {
-
 
         "valid": True,
 
-
         "reactants": reactants,
-
 
         "products": products
 
-
     }
+
+
+# ==========================================================
+# Test
+# ==========================================================
+
+if __name__ == "__main__":
+
+    while True:
+
+        reaction = input(
+            "Reaction (exit): "
+        ).strip()
+
+        if reaction.lower() == "exit":
+
+            break
+
+        print(
+            analyze_reaction_input(reaction)
+        )

@@ -1,73 +1,39 @@
-import json
-import sys
-from pathlib import Path
-
-# ========= Project Root =========
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-sys.path.append(str(BASE_DIR))
-
-from config import ELEMENTS_PATH
 from models.parser.formula_parser import parse_formula
+from models.core.element_manager import get_atomic_mass
 
 
-# ========= Load Elements =========
-
-with open(
-    ELEMENTS_PATH,
-    "r",
-    encoding="utf-8"
-) as file:
-
-    elements = json.load(file)
-
-
-# ========= Find Element =========
-
-def get_element(symbol):
-
-    return next(
-
-        (
-            e for e in elements
-            if e["symbol"].lower()
-            ==
-            symbol.lower()
-        ),
-
-        None
-
-    )
-
-
-# ========= Calculate Molar Mass =========
+# =========================
+# Calculate Molar Mass
+# =========================
 
 def calculate_molar_mass(atoms):
 
-    total_mass = 0
+    total_mass = 0.0
 
     for symbol, count in atoms.items():
 
-        element = get_element(symbol)
+        atomic_mass = get_atomic_mass(symbol)
 
-        if not element:
-            raise ValueError(f"Element {symbol} not found.")
+        if atomic_mass is None:
 
-        total_mass += element["atomic_weight"] * count
+            raise ValueError(
+                f"Element '{symbol}' not found."
+            )
+
+        total_mass += atomic_mass * count
 
     return round(total_mass, 4)
 
 
-# ========= Main =========
+# =========================
+# Test
+# =========================
 
 def main():
 
     while True:
 
-        print(
-            "\n===== MOLAR MASS CALCULATOR ====="
-        )
+        print("\n===== MOLAR MASS CALCULATOR =====")
 
         formula = input(
             "Formula (exit): "
@@ -78,20 +44,19 @@ def main():
 
         try:
 
+            parsed = parse_formula(formula)
+
             mass = calculate_molar_mass(
-                formula
+                parsed["atoms"]
             )
 
             print(
-                f"\nMolar Mass = "
-                f"{mass} g/mol"
+                f"\nMolar Mass = {mass} g/mol"
             )
 
         except ValueError as error:
 
-            print(
-                f"\n❌ {error}"
-            )
+            print(f"\n❌ {error}")
 
 
 if __name__ == "__main__":

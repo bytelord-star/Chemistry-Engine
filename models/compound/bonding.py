@@ -1,79 +1,17 @@
-import json
-
-from config import ELEMENTS_PATH
-
-
-# =========================
-# Load Elements
-# =========================
-
-with open(
-    ELEMENTS_PATH,
-    "r",
-    encoding="utf-8"
-) as file:
-
-    ELEMENTS = json.load(file)
+from models.core.element_manager import (
+    is_metal,
+    get_electronegativity
+)
 
 
-# =========================
-# Helpers
-# =========================
-
-def get_element(symbol):
-
-    for element in ELEMENTS:
-
-        if element["symbol"] == symbol:
-
-            return element
-
-    return None
-
-
-def is_metal(symbol):
-
-    element = get_element(symbol)
-
-    if not element:
-
-        return False
-
-    return element["category"] in [
-
-        "alkali_metal",
-
-        "alkaline_earth_metal",
-
-        "transition_metal",
-
-        "post_transition_metal",
-
-        "lanthanide",
-
-        "actinide"
-
-    ]
-
-
-def electronegativity(symbol):
-
-    element = get_element(symbol)
-
-    if not element:
-
-        return None
-
-    return element.get("electronegativity")
-
-
-# =========================
+# ==========================================================
 # Bond Type
-# =========================
+# ==========================================================
 
 def calculate_bond_type(parsed):
-
     """
+    Determine the primary bond type of a compound.
+
     Parameters
     ----------
     parsed : dict
@@ -88,117 +26,102 @@ def calculate_bond_type(parsed):
 
     polyatomic = parsed["polyatomic_ions"]
 
-    elements = list(atoms.keys())
+    symbols = list(atoms.keys())
 
-
-    # -----------------------------
+    # ======================================================
     # Single Element
-    # -----------------------------
+    # ======================================================
 
-    if len(elements) == 1:
+    if len(symbols) == 1:
 
-        if is_metal(elements[0]):
-
+        if is_metal(symbols[0]):
             return "Metallic"
 
         return "Covalent"
 
+    # ======================================================
+    # Ionic Compound (Metal + Polyatomic Ion)
+    # ======================================================
 
-    # -----------------------------
-    # Polyatomic Ionic
-    # -----------------------------
-
-    if polyatomic:
-
-        if any(
-
-            is_metal(symbol)
-
-            for symbol in elements
-
-        ):
-
-            return "Ionic"
-
-
-    # -----------------------------
-    # Ionic
-    # -----------------------------
-
-    metals = [
-
-        e
-
-        for e in elements
-
-        if is_metal(e)
-
-    ]
-
-    nonmetals = [
-
-        e
-
-        for e in elements
-
-        if not is_metal(e)
-
-    ]
-
-    if metals and nonmetals:
+    if polyatomic and any(
+        is_metal(symbol)
+        for symbol in symbols
+    ):
 
         return "Ionic"
 
+    # ======================================================
+    # Ionic Compound (Metal + Nonmetal)
+    # ======================================================
 
-    # -----------------------------
-    # Binary Covalent
-    # -----------------------------
+    metals = [
+        symbol
+        for symbol in symbols
+        if is_metal(symbol)
+    ]
 
-    if len(elements) == 2:
+    nonmetals = [
+        symbol
+        for symbol in symbols
+        if not is_metal(symbol)
+    ]
 
-        en1 = electronegativity(
+    if metals and nonmetals:
+        return "Ionic"
 
-            elements[0]
+    # ======================================================
+    # Binary Covalent Compound
+    # ======================================================
 
-        )
+    if len(symbols) == 2:
 
-        en2 = electronegativity(
+        en1 = get_electronegativity(symbols[0])
 
-            elements[1]
+        en2 = get_electronegativity(symbols[1])
 
-        )
+        if en1 is not None and en2 is not None:
 
-        if (
+            difference = abs(en1 - en2)
 
-            en1 is not None
-
-            and
-
-            en2 is not None
-
-        ):
-
-            diff = abs(
-
-                en1 - en2
-
-            )
-
-            if diff < 0.4:
-
+            if difference < 0.4:
                 return "Nonpolar Covalent"
 
-            elif diff < 1.7:
-
+            elif difference < 1.7:
                 return "Polar Covalent"
 
             else:
-
                 return "Ionic"
 
+    # ======================================================
+    # Multi-element Covalent Compound
+    # ======================================================
 
-    # -----------------------------
-    # Multi-element Covalent
-    # -----------------------------
+    electronegativities = []
+
+    for symbol in symbols:
+
+        en = get_electronegativity(symbol)
+
+        if en is not None:
+
+            electronegativities.append(en)
+
+    if len(electronegativities) >= 2:
+
+        difference = (
+            max(electronegativities)
+            -
+            min(electronegativities)
+        )
+
+        if difference < 0.4:
+            return "Nonpolar Covalent"
+
+        elif difference < 1.7:
+            return "Polar Covalent"
+
+    # ======================================================
+    # Default
+    # ======================================================
 
     return "Covalent"

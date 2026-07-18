@@ -1,55 +1,55 @@
-import json
 import re
 
-from config import ELEMENTS_PATH
+from models.core.element_manager import element_exists
 
 
-with open(
-    ELEMENTS_PATH,
-    "r",
-    encoding="utf-8"
-) as file:
+# ==========================================================
+# Pattern
+# ==========================================================
 
-    elements = json.load(file)
-
-
-
-VALID_SYMBOLS = {
-
-    element["symbol"]
-
-    for element in elements
-
-}
+ELEMENT_PATTERN = re.compile(
+    r"[A-Z][a-z]?"
+)
 
 
+# ==========================================================
+# Extract Element Symbols
+# ==========================================================
 
-def extract_symbols(formula):
+def extract_element_symbols(
+    formula: str,
+) -> list[str]:
+    """
+    Extract element symbols from a chemical formula.
 
-    return re.findall(
+    Example
+    -------
+    H2SO4 -> ["H", "S", "O"]
+    """
 
-        r"[A-Z][a-z]?",
-
-        formula
-
-    )
-
-
-
-def validate_elements(formula):
-
-
-    symbols = extract_symbols(
+    return ELEMENT_PATTERN.findall(
         formula
     )
 
 
-    for symbol in symbols:
+# ==========================================================
+# Validate Elements
+# ==========================================================
 
+def validate_elements(
+    formula: str,
+) -> bool:
+    """
+    Check whether every extracted element
+    exists in the database.
+    """
 
-        if symbol not in VALID_SYMBOLS:
+    return all(
 
-            return False
+        element_exists(symbol)
 
+        for symbol in extract_element_symbols(
+            formula
+        )
 
-    return True
+    )

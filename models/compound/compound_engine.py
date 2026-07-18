@@ -1,43 +1,30 @@
-import sys
-from pathlib import Path
-
-# ========= Root =========
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-sys.path.append(str(BASE_DIR))
-
-# ========= Models =========
-
-
+# ========= Naming =========
+from models.naming.name_manager import generate_name
+# ========= Parser =========
 from models.parser.formula_validator import is_valid_formula
 from models.parser.element_validator import validate_elements
 from models.parser.formula_parser import parse_formula
 
+# ========= Compound =========
 from models.compound.compound_builder import build_compound
-from models.compound.molecular_mass import calculate_molar_mass
-from models.compound.compound_classification import classify_compound
-from models.compound.bonding import calculate_bond_type
-from models.compound.molecular_polarity import predict_polarity
+from models.compound.compound_processor import (
+    prepare_compound_data,
+)
 
-from models.core.base_manager import find_base
-from models.core.acid_manager import find_acid
+# ========= Database =========
 from models.core.database_manager import (
+    add_compound,
     find_compound,
-    add_compound
 )
 
 
-# =========================
-# Create Compound
-# =========================
+# ==========================================================
+# Validation
+# ==========================================================
 
-def create_compound(formula):
-
-    formula = formula.strip()
-
-    # -----------------------
-    # Validate Formula
-    # -----------------------
+def validate_formula_input(
+    formula: str,
+):
 
     if not is_valid_formula(formula):
 
@@ -45,124 +32,148 @@ def create_compound(formula):
             f"Invalid formula: {formula}"
         )
 
-    # -----------------------
-    # Validate Elements
-    # -----------------------
-
     if not validate_elements(formula):
 
         raise ValueError(
             f"Unknown element in formula: {formula}"
         )
 
-    # -----------------------
-    # Database
-    # -----------------------
 
-    existing = find_compound(formula)
+# ==========================================================
+# Database
+# ==========================================================
 
-    if existing:
+def load_existing_compound(
+    formula: str,
+):
 
-        print("✓ Loaded from database")
-
-        return existing
-
-    print("Creating new compound...")
-
-    # -----------------------
-    # Parse (ONLY ONCE)
-    # -----------------------
-
-    parsed = parse_formula(formula)
-
-    atoms = parsed["atoms"]
-
-    # -----------------------
-    # Molar Mass
-    # -----------------------
-
-    mass = calculate_molar_mass(atoms)
-
-    # -----------------------
-    # Bond
-    # -----------------------
-
-    bond = calculate_bond_type(parsed)
-
-    # -----------------------
-    # Polarity
-    # -----------------------
-
-    polarity = predict_polarity(
-        bond,
+    compound = find_compound(
         formula
     )
 
-    # -----------------------
-    # Classification
-    # -----------------------
+    if compound is not None:
 
-    classification = classify_compound(parsed)
-
-    # _____________________
-
-    acid_data = None
-
-    if classification["type"] == "Acid":
-        acid_data = find_acid(parsed["formula"])
-
-    base_data = None
-
-    if classification["type"] == "Base":
-        base_data = find_base(parsed["formula"])
-
-    # -----------------------
-    # Compound Object
-    # -----------------------
-
-    compound = build_compound( 
-
-        parsed,
-        mass,
-        bond,
-        polarity,
-        classification,
-        acid_data,
-        base_data
-
-    )
-
-    added = add_compound(compound)
-
-    if added:
-
-        print("✓")
-
-    else:
-
-        print("✓")
+        print(
+            "✓ Loaded from database"
+        )
 
     return compound
 
 
-# =========================
+# ==========================================================
+# Save
+# ==========================================================
+
+def save_compound(
+    compound: dict,
+):
+
+    if add_compound(compound):
+
+        print(
+            "✓ Saved to database."
+        )
+
+    else:
+
+        print(
+            "✓ Already exists."
+        )
+
+
+# ==========================================================
+# Create Compound
+# ==========================================================
+
+def create_compound(
+    formula: str,
+):
+
+    formula = formula.strip()
+
+    validate_formula_input(
+        formula
+    )
+
+    compound = load_existing_compound(
+        formula
+    )
+
+    if compound:
+
+        return compound
+
+    print(
+        "Creating new compound..."
+    )
+
+    parsed = parse_formula(
+        formula
+    )
+
+    data = prepare_compound_data(
+
+        parsed,
+
+        formula,
+
+    )
+
+    
+
+    compound = build_compound(
+
+    parsed=data["parsed"],
+
+    name_data=data["name_data"],
+
+    molar_mass=data["molar_mass"],
+
+    bond_type=data["bond_type"],
+
+    molecular_polarity=data["molecular_polarity"],
+
+    classification=data["classification"],
+
+    acid_data=data["acid_data"],
+
+    base_data=data["base_data"],
+
+)
+
+    save_compound(
+        compound
+    )
+
+    return compound
+
+
+# ==========================================================
 # Test
-# =========================
+# ==========================================================
 
 if __name__ == "__main__":
 
     while True:
 
-        formula = input("\nFormula (exit): ")
+        formula = input(
+            "\nFormula (exit): "
+        ).strip()
 
         if formula.lower() == "exit":
 
             break
 
-        result = create_compound(formula)
+        result = create_compound(
+            formula
+        )
 
-        print("\n========== RESULT ==========")
+        print(
+            "\n========== RESULT =========="
+        )
 
         for key, value in result.items():
 
-            print(f"{key}: {value}")
+            print(
+                f"{key}: {value}"
+            )

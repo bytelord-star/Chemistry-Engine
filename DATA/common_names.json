@@ -1,0 +1,138 @@
+[
+  {
+    "formula": "H2O",
+    "common_name": "Water"
+  },
+  {
+    "formula": "NH3",
+    "common_name": "Ammonia"
+  },
+  {
+    "formula": "CH4",
+    "common_name": "Methane"
+  },
+  {
+    "formula": "H2O2",
+    "common_name": "Hydrogen Peroxide"
+  },
+  {
+    "formula": "N2O",
+    "common_name": "Nitrous Oxide"
+  },
+  {
+    "formula": "NO",
+    "common_name": "Nitric Oxide"
+  },
+  {
+    "formula": "NO2",
+    "common_name": "Nitrogen Dioxide"
+  },
+  {
+    "formula": "CO",
+    "common_name": "Carbon Monoxide"
+  },
+  {
+    "formula": "CO2",
+    "common_name": "Carbon Dioxide"
+  },
+  {
+    "formula": "SO2",
+    "common_name": "Sulfur Dioxide"
+  },
+  {
+    "formula": "SO3",
+    "common_name": "Sulfur Trioxide"
+  },
+  {
+    "formula": "O3",
+    "common_name": "Ozone"
+  },
+  {
+    "formula": "NaCl",
+    "common_name": "Table Salt"
+  },
+  {
+    "formula": "NaHCO3",
+    "common_name": "Baking Soda"
+  },
+  {
+    "formula": "Na2CO3",
+    "common_name": "Washing Soda"
+  },
+  {
+    "formula": "CaCO3",
+    "common_name": "Limestone"
+  },
+  {
+    "formula": "CaO",
+    "common_name": "Quicklime"
+  },
+  {
+    "formula": "Ca(OH)2",
+    "common_name": "Slaked Lime"
+  },
+  {
+    "formula": "MgSO4",
+    "common_name": "Epsom Salt"
+  },
+  {
+    "formula": "KNO3",
+    "common_name": "Saltpeter"
+  },
+  {
+    "formula": "NaNO3",
+    "common_name": "Chile Saltpeter"
+  },
+  {
+    "formula": "SiO2",
+    "common_name": "Silica"
+  },
+  {
+    "formula": "Fe2O3",
+    "common_name": "Rust"
+  },
+  {
+    "formula": "Fe3O4",
+    "common_name": "Magnetite"
+  },
+  {
+    "formula": "CuSO4",
+    "common_name": "Blue Vitriol"
+  },
+  {
+    "formula": "ZnO",
+    "common_name": "Zinc White"
+  },
+  {
+    "formula": "AgCl",
+    "common_name": "Horn Silver"
+  },
+  {
+    "formula": "C2H5OH",
+    "common_name": "Ethanol"
+  },
+  {
+    "formula": "CH3OH",
+    "common_name": "Methanol"
+  },
+  {
+    "formula": "CH3COOH",
+    "common_name": "Acetic Acid"
+  },
+  {
+    "formula": "HCOOH",
+    "common_name": "Formic Acid"
+  },
+  {
+    "formula": "C6H12O6",
+    "common_name": "Glucose"
+  },
+  {
+    "formula": "C12H22O11",
+    "common_name": "Sucrose"
+  },
+  {
+    "formula": "NaClO",
+    "common_name": "Bleach"
+  }
+]
