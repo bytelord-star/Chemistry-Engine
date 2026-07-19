@@ -72,7 +72,6 @@ Chemistry-Engine
 │   ├── naming/
 │   ├── parser/
 │   ├── reaction/
-│   └── validation/
 │
 ├── tools/
 │
